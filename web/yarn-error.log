@@ -1,0 +1,61 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/andrew/.yarn/bin:/home/andrew/Android/Sdk/emulator:/home/andrew/Android/Sdk/tools:/home/andrew/Android/Sdk/tools/bin:/home/andrew/Android/Sdk/platform-tools:/home/andrew/android-studio/bin:info If you think this is a bug, please open a bug report with the information provided in "/home/andrew/www/projects/pets/web/yarn-error.log".
+  info Visit https://yarnpkg.com/en/docs/cli/global for documentation about this command.
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  12.18.4
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/andrew/www/projects/pets/web/package.json: Unexpected token } in JSON at position 691
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "web",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+      "dev": "webpack serve"
+    },
+    "dependencies": {
+      "@babel/cli": "^7.12.10",
+      "@babel/core": "^7.12.10",
+      "@babel/preset-env": "^7.12.11",
+      "@babel/preset-react": "^7.12.10",
+      "@webpack-cli/serve": "^1.1.0",
+      "axios": "^0.21.0",
+      "babel-loader": "^8.2.2",
+      "css-loader": "^5.0.1",
+      "file-loader": "^6.2.0",
+      "react": "^17.0.1",
+      "react-dom": "^17.0.1",
+      "style-loader": "^2.0.0",
+      "webpack": "^5.11.0",
+      "webpack-cli": "^4.2.0"
+    },
+    "devDependencies": {
+      "@babel/plugin-transform-runtime": "^7.12.10",
+      "webpack-dev-server": "^3.11.0"
+    }
+  }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
