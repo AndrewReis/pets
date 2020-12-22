@@ -21,8 +21,8 @@
 
 # Regra de négocio:
 
-  -[x] Não podemos curtir o mesmo pet 2 vezes. Devemos criar uma regra de deslike.
+  - [x] Não podemos curtir o mesmo pet 2 vezes. Devemos criar uma regra de deslike.
        
-  -[x] Só podemos atualizar um pet que já exista na API.
+  - [x] Só podemos atualizar um pet que já exista na API.
 
-  -[x] Só podemos dar likes em pets que existam no sistema.
+  - [x] Só podemos dar likes em pets que existam no sistema.
