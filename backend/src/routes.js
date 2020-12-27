@@ -16,7 +16,7 @@ routes.get('/pets', (request, response) => {
 });
 
 routes.post('/pets', (request, response) => {
-  const { name, description, gender, species } = request.body;
+  const { name, description, gender, species, city } = request.body;
 
   const like = 0;
 
@@ -26,6 +26,7 @@ routes.post('/pets', (request, response) => {
     description,
     gender,
     species,
+    city,
     like
   };
 
@@ -36,7 +37,7 @@ routes.post('/pets', (request, response) => {
 
 routes.put('/pets/:id', (request, response) => {
   const { id } = request.params;
-  const { name, description, gender, species } = request.body;
+  const { name, description, gender, species, city } = request.body;
 
   const findIndex = pets.findIndex(pet => pet.id === id);
 
@@ -49,7 +50,8 @@ routes.put('/pets/:id', (request, response) => {
     name,
     description,
     gender,
-    species
+    species,
+    city
   };
 
   pets[findIndex] = updatePet;
@@ -88,6 +90,7 @@ routes.post('/pets/:id/likes', (request, response) => {
     description: pet.description,
     gender: pet.gender,
     species: pet.species,
+    city: pet.city,
     like: pet.like ? 0 : 1,
   }
 
