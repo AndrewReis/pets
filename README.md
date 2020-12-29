@@ -1,5 +1,5 @@
 <h1 align="center">
-    <h1 align="center">Pets</h1>
+    <h1 align="center">  <img alt="logo" title="#Pets" src="https://github.com/AndrewReis/pets/blob/master/assets/logo.png" /> </h1>
 </h1>
 
 
@@ -7,7 +7,7 @@
   <img alt="Banner" title="#Banner" src="https://github.com/AndrewReis/pets/blob/master/assets/pets-github.png" />
 </h1>
 
-<p align="center">🐶 Conectar pessoas com vontade de ajudar à ONG´s, tratarem <strong>Animais</strong> que necessitam de ajuda. </p>
+<p align="center">🐶 Adote um <strong>Pet</strong> e faça a sua vida e a dele mais feliz. </p>
 
 <p align="center">
  <a href="#objetivo">Objetivo</a> 
@@ -27,7 +27,8 @@
 
 
 <p align="center">
-	Uma aplicação que vai conectar pessoas que tem vontade de ajudar, seja presencialmente ou de uma forma monetaria, A ONG´s , organizações sem fins lucrativos que muitas vezes precisam de um valor para tratar algum caso específico como: animais abandonados, cirurgias ou até mesmo encontrar um novo lar para esses animais.</p>
+	Uma aplicação que vai conectar pessoas que querem dar um novo lar para um pet. Existem muitos animais abondonados e que precisam do seu carinho.
+</p>
 	
 
 
@@ -38,18 +39,16 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - [Node.js](https://nodejs.org/en/)
 - [ReactJS](https://pt-br.reactjs.org/)
-
-
-
+- [React Native](https://reactnative.dev/)
 
 
 <h1 id='features'> ✔️ Features </h1>
 
-- [x] Cadastro de ONG
-- [x] Cadastrar nova ocorrência
-- [x] Listar Casos
-
-
+- [x] Cadastro de Pet
+- [ ] Atualizar informações.
+- [ ] Deletar um Pet.
+- [ ] Curtir um Pet (Mobile).
+- [x] Listar Pets (Mobile).
 
 
 <h1 id='clone'>❗ Pré-requisitos</h1>
@@ -57,7 +56,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), e algum gerenciador de pacotes: Npm ou [Yarn](https://yarnpkg.com/) 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
-
 
 
 ### 💡 Clonando Repositório
@@ -110,7 +108,7 @@ $ yarn start
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
 ```
 
-### 🎲 Rodando o Front End Mobile
+### 🎲 Rodando o Front End (Mobile)
 
 ```bash
 
@@ -129,8 +127,6 @@ $ yarn start
 
 
 ```
-
-
 
 
 <h1 id='autor'> 🙋🏽‍♂️ Autor </h1>
