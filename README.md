@@ -101,11 +101,11 @@ $ npm install
 $ yarn install
 
 # Execute a aplicação
-$ npm start
+$ npm run dev
    ou
-$ yarn start
+$ yarn dev
 
-# O servidor inciará na porta:3000 - acesse <http://localhost:3000>
+# O site inciará na porta:8080 - acesse <http://localhost:8080>
 ```
 
 ### 🎲 Rodando o Front End (Mobile)
