@@ -10,16 +10,15 @@
 <p align="center">🐶 Adote um <strong>Pet</strong> e faça a sua vida e a dele mais feliz. </p>
 
 <p align="center">
- <a href="#objetivo">Objetivo</a> 
- <a href="#features">Features</a>  
- <a href="#tecnologias">Tecnologias</a>  
- <a href="#clone">Clonar Repositório</a> 
+ <a href="#objetivo">Objetivo</a> &nbsp&nbsp&nbsp
+ <a href="#features">Features</a> &nbsp&nbsp&nbsp
+ <a href="#tecnologias">Tecnologias</a> &nbsp&nbsp&nbsp
+ <a href="#clone">Clonar Repositório</a> &nbsp&nbsp&nbsp
  <a href="#autor">Autor</a> 
 </p>
-<p  align="center"><a href="https://github.com/AndrewReis/BE-THE-HERO-WEB/blob/master/LICENSE.txt"><img alt="GitHub license" src="https://img.shields.io/github/license/AndrewReis/BE-THE-HERO-WEB"></a></p>
 
 <h4 align="center"> 
-	🚀  Projeto finalizado.  🚀
+	🚀  Projeto em Andamento.  🚀
 </h4>
 
 
