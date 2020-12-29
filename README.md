@@ -68,7 +68,7 @@ $ git clone <https://github.com/AndrewReis/pets.git>
 $ cd pets
 ```
 
-### 🎲 Rodando o Back End (servidor)
+### 🎲 Rodando o Back End (API)
 
 ```bash
 
