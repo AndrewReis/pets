@@ -11,6 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import dog from '../../assets/dog.png';
+import logo from '../../assets/logo.png';
 
 export default function Dashboard(){
 
@@ -26,16 +27,30 @@ export default function Dashboard(){
 
   return (
     <View style={styles.container} >
+      <Image source={logo} />
       <View style={styles.header} >
-        <TouchableOpacity style={styles.ul} >
-          <Text style={styles.li} >Dogs</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.ul} >
-          <Text style={styles.li} >Cats</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.ul} >
-          <Text style={styles.li} >Birds</Text>
-        </TouchableOpacity>
+        <View style={styles.hgroup} >
+          <Text style={styles.title}>
+            My Pets
+          </Text>
+          <Text style={styles.p} >
+            Taking care of a pet is my favorite, it helps me to gaimr stress and fatigue.
+          </Text>
+        </View>
+        <View style={styles.nav}>
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
+            <Text style={styles.li} >Cats</Text>
+          </TouchableOpacity> 
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
+            <Text style={styles.li} >Dogs</Text>
+          </TouchableOpacity> 
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
+            <Text style={styles.li} >Birds</Text>
+          </TouchableOpacity> 
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
+            <Text style={styles.li} >Others</Text>
+          </TouchableOpacity> 
+        </View>
       </View>
       <ScrollView>
         <View style={styles.informationContainer}>
@@ -104,6 +119,15 @@ export default function Dashboard(){
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <View style={styles.footer} >
+        <TouchableOpacity style={styles.footerButton} >
+          <Icon name="home" size={22} color="#5533EA" />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.footerButton}>
+        <Icon name="heart" size={20} color="#BDBDBD" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -116,40 +140,67 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    backgroundColor: '#fff',
     width: '100%',
-    height: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 12,
+  },
+
+  hgroup: {
+    width: 320,
+    alignItems: 'center',
+  },  
+
+  nav: {
+    marginTop: 12,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    marginBottom: 36,
+    justifyContent: 'center'
   },
 
   ul: {
     width: 76,
-    height: '100%',
-    backgroundColor: '#f5f5fa',
+    backgroundColor: '#F5F5FA',
     borderRadius: 16,
-
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+
+    elevation: 12,
+
+    marginLeft: 8,
   },
 
   li: {
     fontSize: 14,
     fontWeight: 'bold',
     color: '#9999c7',
-
-
   },
 
   informationContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F2FA',
     width: 327,
     height: 130,
     borderRadius: 16,
     flexDirection: 'row',
-    marginBottom: 27
+    marginBottom: 27,
+    shadowColor: "#001",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 5.68,
+    elevation: 2,
   },
 
   informationImage: {
@@ -183,9 +234,38 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
 
+  p: {
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '500',
+    color: '#828282',
+    overflow: 'hidden',
+  },
+
   informationButtonLike: {
     width: 32,
     alignItems: 'flex-start',
     paddingTop: 10,
+  },
+
+  footer: {
+    width: '100%',
+    height: 44,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#bdbdbd',
+    borderTopStartRadius: 20,
+    borderTopRightRadius: 20
+  },
+
+  footerButton: {
+    height: 40,
+    marginLeft: 38,
+    backgroundColor: '#fff',
+    borderRadius: 30,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
