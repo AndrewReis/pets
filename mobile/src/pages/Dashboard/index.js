@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,21 +9,43 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome'
-
+import { useNavigation } from '@react-navigation/native'
+ 
 import dog from '../../assets/dog.png';
 import logo from '../../assets/logo.png';
 
+import api from '../../services/api';
+
 export default function Dashboard(){
 
-  const [ likePet, setLikePet ] = useState(false);
+  const [pets, setPets] = useState([]);
+  const [ likePet, setLikePet ] = useState([]);
 
-  function handleLikeThisPet(){
-    if(!likePet){
-      return setLikePet(true);
+  async function handleLikeThisPet(id){
+    setLikePet([...likePet, id])
+    await api.post(`/pets/${id}/likes`);
+    console.log('splice: ', likePet)
+
+    // await handleDeslike(id);
+  }
+
+  // async function handleDeslike(id){
+  //   const findIndexId = likePet.findIndex(findId => findId === id);
+  //   console.log('findIndex: ', findIndexId)
+  //   if(findIndexId >= 0){
+  //     likePet.splice(findIndexId, 1);
+  //     console.log('splice: ', likePet)
+  //     return;
+  //   }
+  // }
+  useEffect(() => {
+    async function getPetInAPI(){
+      const response = await api.get('/pets')
+      setPets(response.data);
     }
 
-    return setLikePet(false)
-  }
+    getPetInAPI()
+  }, []);
 
   return (
     <View style={styles.container} >
@@ -52,73 +74,27 @@ export default function Dashboard(){
           </TouchableOpacity> 
         </View>
       </View>
+
       <ScrollView>
-        <View style={styles.informationContainer}>
-          <View style={styles.informationImage} >
-            <Image source={dog} style={styles.informationImage} />
-          </View>
-          <View style={styles.informationPet}>
-            <Text style={styles.title} >Nome do pet</Text>
-            <Text style={styles.address} >Endereço</Text>
-            <Text style={styles.about} >Taking care of a pet is my favorite, it helps me to... </Text>
-          </View>
-          <TouchableOpacity style={styles.informationButtonLike}>
-            <Icon name="heart" size={20} onPress={handleLikeThisPet} color={ likePet ? "#FF4B33" : "#BDBDBD" } />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.informationContainer}>
-          <View style={styles.informationImage} >
-            <Image source={dog} style={styles.informationImage} />
-          </View>
-          <View style={styles.informationPet}>
-            <Text style={styles.title} >Nome do pet</Text>
-            <Text style={styles.address} >Endereço</Text>
-            <Text style={styles.about} >Taking care of a pet is my favorite, it helps me to... </Text>
-          </View>
-          <TouchableOpacity style={styles.informationButtonLike}>
-            <Icon name="heart" size={20} onPress={handleLikeThisPet} color={ likePet ? "#FF4B33" : "#BDBDBD" } />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.informationContainer}>
-          <View style={styles.informationImage} >
-            <Image source={dog} style={styles.informationImage} />
-          </View>
-          <View style={styles.informationPet}>
-            <Text style={styles.title} >Nome do pet</Text>
-            <Text style={styles.address} >Endereço</Text>
-            <Text style={styles.about} >Taking care of a pet is my favorite, it helps me to... </Text>
-          </View>
-          <TouchableOpacity style={styles.informationButtonLike}>
-            <Icon name="heart" size={20} onPress={handleLikeThisPet} color={ likePet ? "#FF4B33" : "#BDBDBD" } />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.informationContainer}>
-          <View style={styles.informationImage} >
-            <Image source={dog} style={styles.informationImage} />
-          </View>
-          <View style={styles.informationPet}>
-            <Text style={styles.title} >Nome do pet</Text>
-            <Text style={styles.address} >Endereço</Text>
-            <Text style={styles.about} >Taking care of a pet is my favorite, it helps me to... </Text>
-          </View>
-          <TouchableOpacity style={styles.informationButtonLike}>
-            <Icon name="heart" size={20} onPress={handleLikeThisPet} color={ likePet ? "#FF4B33" : "#BDBDBD" } />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.informationContainer}>
-          <View style={styles.informationImage} >
-            <Image source={dog} style={styles.informationImage} />
-          </View>
-          <View style={styles.informationPet}>
-            <Text style={styles.title} >Nome do pet</Text>
-            <Text style={styles.address} >Endereço</Text>
-            <Text style={styles.about} >Taking care of a pet is my favorite, it helps me to... </Text>
-          </View>
-          <TouchableOpacity style={styles.informationButtonLike}>
-            <Icon name="heart" size={20} onPress={handleLikeThisPet} color={ likePet ? "#FF4B33" : "#BDBDBD" } />
-          </TouchableOpacity>
-        </View>
+       {
+         pets.map(pet => (
+            <View style={styles.informationContainer} key={pet.id} >
+              <View style={styles.informationImage} >
+                <Image source={dog} style={styles.informationImage} />
+              </View>
+              <View style={styles.informationPet}>
+                <Text style={styles.title} > {pet.name} </Text>
+                <Text style={styles.address} > {pet.city} </Text>
+                <Text style={styles.about} > {pet.description} </Text>
+              </View>
+              <TouchableOpacity style={styles.informationButtonLike} onPress={() => handleLikeThisPet(pet.id)} >
+                <Icon name="heart" size={20} color={ likePet.includes(pet.id) ? "#FF4B33" : "#BDBDBD" } />
+              </TouchableOpacity>
+            </View>
+         ))
+       }
       </ScrollView>
+
       <View style={styles.footer} >
         <TouchableOpacity style={styles.footerButton} >
           <Icon name="home" size={22} color="#5533EA" />

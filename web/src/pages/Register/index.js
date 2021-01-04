@@ -7,28 +7,36 @@ import { Container } from './styles';
 
 function Register(){
 
-  const [ name, setName ] = useState([]);
-  const [ gender, setGender ] = useState([]);
-  const [ species, setSpecies ] = useState([]);
-  const [ city, setCity ] = useState([]);
-  const [ description, setDescription ] = useState([]);
+  const [ name, setName ] = useState('');
+  const [ gender, setGender ] = useState('');
+  const [ species, setSpecies ] = useState('');
+  const [ city, setCity ] = useState('');
+  const [ description, setDescription ] = useState('');
 
   const [ pets, setPets ] = useState([]);
 
   async function handleAddNewPet(event){
     event.preventDefault();
 
-    const data = {
-      name,
-      city,
-      gender,
-      species,
-      description
-    }
+    try {
+      const data = {
+        name,
+        city,
+        gender,
+        species,
+        description
+      }
+      
+      if(!data.name | !data.city | !data.gender | !data.species | !data.description){
+        throw new Error('Preencha todos os dados.')
+      }
+      const response = await api.post('pets', data);
+     
+      setPets([...pets, response.data]);
 
-    const response = await api.post('/pets', data);
-   
-    setPets([...pets, response.data]);
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
@@ -58,7 +66,7 @@ function Register(){
             name={description}
             onChange={e => setDescription(e.target.value)}
           ></textarea>
-          <button type="button" onClick={handleAddNewPet} >cadastrar</button>
+          <button type="submit" onClick={handleAddNewPet} >cadastrar</button>
         </form>
      </Container>
   );
