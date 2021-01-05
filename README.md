@@ -7,7 +7,7 @@
   <img alt="Banner" title="#Banner" src="https://github.com/AndrewReis/pets/blob/master/assets/pets-github.png" />
 </h1>
 
-<p align="center">🐶 Adote um <strong>Pet</strong> e faça a sua vida e a dele mais feliz. </p>
+<p align="center">🐶 Adotar é sempre um gesto de muito amor e carinho, pois além de proporcionar um novo lar para o pet, você ganhará um novo amigo que será sempre grato e fiel companheiro.</p>
 
 <p align="center">
  <a href="#objetivo">Objetivo</a> &nbsp&nbsp&nbsp
@@ -26,7 +26,7 @@
 
 
 <p align="center">
-	Uma aplicação que vai conectar pessoas que querem dar um novo lar para um pet. Existem muitos animais abondonados e que precisam do seu carinho.
+	 Uma aplicação feita para facilitar a conexão entre pessoas com pets que precidam de um lar.
 </p>
 	
 
@@ -43,11 +43,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h1 id='features'> ✔️ Features </h1>
 
-- [x] Cadastro de Pet
+- [x] Cadastro de Pet.
+- [x] Listar Pets (Mobile).
+
 - [ ] Atualizar informações.
 - [ ] Deletar um Pet.
 - [ ] Curtir um Pet (Mobile).
-- [x] Listar Pets (Mobile).
 
 
 <h1 id='clone'>❗ Pré-requisitos</h1>
@@ -119,13 +120,14 @@ $ npm install
   ou
 $ yarn install
 
-# Execute a aplicação
+# Execute a aplicação 
 $ npm start
    ou
 $ yarn start
 
-
 ```
+**Configurando o ambiente mobile** acesse: [Rocketseat Docs](https://react-native.rocketseat.dev/)
+**Fique atento a novas atualizações do React Native**. acesse: [Documentação da CLI](https://github.com/react-native-community/cli#using-npx-recommended) 
 
 
 <h1 id='autor'> 🙋🏽‍♂️ Autor </h1>
