@@ -16,7 +16,7 @@ routes.get('/pets', (request, response) => {
 });
 
 routes.post('/pets', (request, response) => {
-  const { name, description, gender, species, city } = request.body;
+  const { name, description, gender, species, city, image } = request.body;
 
   const like = 0;
 
@@ -27,6 +27,7 @@ routes.post('/pets', (request, response) => {
     gender,
     species,
     city,
+    image,
     like
   };
 
@@ -51,7 +52,8 @@ routes.put('/pets/:id', (request, response) => {
     description,
     gender,
     species,
-    city
+    city,
+    image
   };
 
   pets[findIndex] = updatePet;
@@ -73,30 +75,30 @@ routes.delete('/pets/:id', (request, response) => {
   return response.status(204).send();
 });
 
-routes.post('/pets/:id/likes', (request, response) => {
-  const { id } = request.params;
+// routes.post('/pets/:id/likes', (request, response) => {
+//   const { id } = request.params;
 
-  const findPetIndex = pets.findIndex(pet => pet.id === id);
+//   const findPetIndex = pets.findIndex(pet => pet.id === id);
 
-  if(findPetIndex < 0 ){
-    return response.status(400).json({error: 'Pet not found.'});
-  }
+//   if(findPetIndex < 0 ){
+//     return response.status(400).json({error: 'Pet not found.'});
+//   }
 
-  const pet = pets[findPetIndex];
+//   const pet = pets[findPetIndex];
 
-  const newPet = {
-    id,
-    name: pet.name,
-    description: pet.description,
-    gender: pet.gender,
-    species: pet.species,
-    city: pet.city,
-    like: pet.like ? 0 : 1,
-  }
+//   const newPet = {
+//     id,
+//     name: pet.name,
+//     description: pet.description,
+//     gender: pet.gender,
+//     species: pet.species,
+//     city: pet.city,
+//     like: pet.like ? 0 : 1,
+//   }
 
-  pets[findPetIndex] = newPet;
+//   pets[findPetIndex] = newPet;
 
-  return response.json(newPet);
-});
+//   return response.json(newPet);
+// });
 
 module.exports = routes;

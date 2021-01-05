@@ -3,49 +3,37 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
   Image
 } from 'react-native';
-
-import Icon from 'react-native-vector-icons/FontAwesome'
-import { useNavigation } from '@react-navigation/native'
  
-import dog from '../../assets/dog.png';
 import logo from '../../assets/logo.png';
 
 import api from '../../services/api';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default function Dashboard(){
 
   const [pets, setPets] = useState([]);
-  const [ likePet, setLikePet ] = useState([]);
+  const [query, setQuery] = useState('');
 
-  async function handleLikeThisPet(id){
-    setLikePet([...likePet, id])
-    await api.post(`/pets/${id}/likes`);
-    console.log('splice: ', likePet)
 
-    // await handleDeslike(id);
-  }
+  const filter = ['gato', 'cão', 'passaro', ''];
 
-  // async function handleDeslike(id){
-  //   const findIndexId = likePet.findIndex(findId => findId === id);
-  //   console.log('findIndex: ', findIndexId)
-  //   if(findIndexId >= 0){
-  //     likePet.splice(findIndexId, 1);
-  //     console.log('splice: ', likePet)
-  //     return;
-  //   }
-  // }
   useEffect(() => {
     async function getPetInAPI(){
-      const response = await api.get('/pets')
+      const response = await api.get(`/pets?species=${query}`)
       setPets(response.data);
     }
 
     getPetInAPI()
-  }, []);
+  }, [query]);
+
+  function handleFilterPets(index){
+    const filterPet = filter[index]
+    console.log(query)
+    setQuery(filterPet);
+  }
 
   return (
     <View style={styles.container} >
@@ -60,22 +48,40 @@ export default function Dashboard(){
           </Text>
         </View>
         <View style={styles.nav}>
-          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
-            <Text style={styles.li} >Cats</Text>
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} onPress={ () => handleFilterPets(0)} >
+            <Text style={styles.li}>Cats</Text>
           </TouchableOpacity> 
-          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} onPress={ () => handleFilterPets(1)}>
             <Text style={styles.li} >Dogs</Text>
           </TouchableOpacity> 
-          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} onPress={ () => handleFilterPets(2)}>
             <Text style={styles.li} >Birds</Text>
           </TouchableOpacity> 
-          <TouchableOpacity style={styles.ul} activeOpacity={0.7} >
-            <Text style={styles.li} >Others</Text>
+          <TouchableOpacity style={styles.ul} activeOpacity={0.7} onPress={ () => handleFilterPets(3)}>
+            <Text style={styles.li} >All</Text>
           </TouchableOpacity> 
         </View>
       </View>
 
-      <ScrollView>
+
+      <FlatList 
+        data={pets}
+        keyExtractor={pets => pets.id}
+        renderItem={( { item: pet } ) => (
+          <View style={styles.informationContainer} key={pet.id} >
+            <View style={styles.informationImage} >
+              <Image source={pet.image} style={styles.informationImage} />
+            </View>
+            <View style={styles.informationPet}>
+              <Text style={styles.title} > {pet.name} </Text>
+              <Text style={styles.address} > {pet.city} </Text>
+              <Text style={styles.about} > {pet.description} </Text>
+            </View>
+          </View>
+        )}
+      />
+
+      {/* <ScrollView>
        {
          pets.map(pet => (
             <View style={styles.informationContainer} key={pet.id} >
@@ -87,23 +93,10 @@ export default function Dashboard(){
                 <Text style={styles.address} > {pet.city} </Text>
                 <Text style={styles.about} > {pet.description} </Text>
               </View>
-              <TouchableOpacity style={styles.informationButtonLike} onPress={() => handleLikeThisPet(pet.id)} >
-                <Icon name="heart" size={20} color={ likePet.includes(pet.id) ? "#FF4B33" : "#BDBDBD" } />
-              </TouchableOpacity>
             </View>
          ))
        }
-      </ScrollView>
-
-      <View style={styles.footer} >
-        <TouchableOpacity style={styles.footerButton} >
-          <Icon name="home" size={22} color="#5533EA" />
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.footerButton}>
-        <Icon name="heart" size={20} color="#BDBDBD" />
-        </TouchableOpacity>
-      </View>
+      </ScrollView> */}
     </View>
   );
 }
@@ -216,32 +209,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#828282',
     overflow: 'hidden',
-  },
-
-  informationButtonLike: {
-    width: 32,
-    alignItems: 'flex-start',
-    paddingTop: 10,
-  },
-
-  footer: {
-    width: '100%',
-    height: 44,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#bdbdbd',
-    borderTopStartRadius: 20,
-    borderTopRightRadius: 20
-  },
-
-  footerButton: {
-    height: 40,
-    marginLeft: 38,
-    backgroundColor: '#fff',
-    borderRadius: 30,
-    padding: 10,
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 })
