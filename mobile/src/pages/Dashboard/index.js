@@ -9,6 +9,10 @@ import {
  
 import logo from '../../assets/logo.png';
 
+import dog from '../../assets/dog.png'
+import cat from '../../assets/gato.png'
+import bird from '../../assets/passaro.png'
+
 import api from '../../services/api';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -16,7 +20,6 @@ export default function Dashboard(){
 
   const [pets, setPets] = useState([]);
   const [query, setQuery] = useState('');
-
 
   const filter = ['gato', 'cão', 'passaro', ''];
 
@@ -31,9 +34,9 @@ export default function Dashboard(){
 
   function handleFilterPets(index){
     const filterPet = filter[index]
-    console.log(query)
     setQuery(filterPet);
   }
+
 
   return (
     <View style={styles.container} >
@@ -70,7 +73,7 @@ export default function Dashboard(){
         renderItem={( { item: pet } ) => (
           <View style={styles.informationContainer} key={pet.id} >
             <View style={styles.informationImage} >
-              <Image source={pet.image} style={styles.informationImage} />
+              <Image source={ pet.species == 'cão' ? dog : cat } style={styles.informationImage} />
             </View>
             <View style={styles.informationPet}>
               <Text style={styles.title} > {pet.name} </Text>
@@ -80,23 +83,6 @@ export default function Dashboard(){
           </View>
         )}
       />
-
-      {/* <ScrollView>
-       {
-         pets.map(pet => (
-            <View style={styles.informationContainer} key={pet.id} >
-              <View style={styles.informationImage} >
-                <Image source={dog} style={styles.informationImage} />
-              </View>
-              <View style={styles.informationPet}>
-                <Text style={styles.title} > {pet.name} </Text>
-                <Text style={styles.address} > {pet.city} </Text>
-                <Text style={styles.about} > {pet.description} </Text>
-              </View>
-            </View>
-         ))
-       }
-      </ScrollView> */}
     </View>
   );
 }

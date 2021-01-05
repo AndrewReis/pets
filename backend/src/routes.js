@@ -16,7 +16,7 @@ routes.get('/pets', (request, response) => {
 });
 
 routes.post('/pets', (request, response) => {
-  const { name, description, gender, species, city, image } = request.body;
+  const { name, description, gender, species, city } = request.body;
 
   const like = 0;
 
@@ -27,7 +27,6 @@ routes.post('/pets', (request, response) => {
     gender,
     species,
     city,
-    image,
     like
   };
 

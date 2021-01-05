@@ -10,14 +10,13 @@ function Register(){
   const [ name, setName ] = useState('');
   const [ gender, setGender ] = useState('');
   const [ species, setSpecies ] = useState('');
-  const [ image, setImage ] = useState('');
   const [ city, setCity ] = useState('');
   const [ description, setDescription ] = useState('');
 
   const [ pets, setPets ] = useState([]);
 
   async function handleAddNewPet(event){
-    event.preventDefault();
+    // event.preventDefault();
 
     try {
       const data = {
@@ -25,7 +24,6 @@ function Register(){
         city,
         gender,
         species,
-        image,
         description
       }
       
@@ -35,7 +33,6 @@ function Register(){
       const response = await api.post('pets', data);
      
       setPets([...pets, response.data]);
-
     } catch (error) {
       alert(error);
     }
@@ -61,10 +58,6 @@ function Register(){
             name={species}
             onChange={e => setSpecies(e.target.value)}
             placeholder="espécie"/>
-          <input 
-            name={image}
-            onChange={e => setImage(e.target.value)}
-            placeholder="URL da imagem"/>
           <textarea
             cols="30"
             rows="10"
